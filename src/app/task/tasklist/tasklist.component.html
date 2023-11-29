@@ -1,0 +1,21 @@
+<div class="container mt-4">
+    <h2>ToDo App</h2>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Add a new task" [(ngModel)]="newTask" (keyup.enter)="addTask()">
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="button" (click)="addTask()">Add Task</button>
+      </div>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let task of tasks" [ngClass]="{'completed-task': task.done}">
+        <div class="d-flex justify-content-between align-items-center">
+          <span [ngStyle]="{'text-decoration': task.done ? 'line-through' : 'none'}">{{ task.title }}</span>
+          <div>
+            <button class="btn btn-success btn-sm mr-2" *ngIf="!task.done" (click)="markAsDone(task.id)">Done</button>
+            <button class="btn btn-danger btn-sm" (click)="deleteTask(task.id)">Remove</button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
